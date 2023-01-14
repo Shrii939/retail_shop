@@ -5,8 +5,14 @@ $password = "";
 $dbms = "shop";
 $link = mysqli_connect($servername, $username, $password, $dbms);
 $conn = mysqli_select_db($link, $dbms);
-?>
 
+if ($conn) {
+    echo ("connected");
+} else {
+    die("not connected " . mysqli_connect_error());
+}
+
+?>
 <html>
 
 <head>
@@ -17,14 +23,14 @@ $conn = mysqli_select_db($link, $dbms);
 
 <body>
     <form class="form-inline my-4 my-lg-2 p-3" method="post">
-        <input class="form-control mr-sm-2" type="text" name="product" placeholder="Enter the product">
-        <input class="form-control mr-sm-2" type="text" name="price" placeholder="Enter the price">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">submit</button>
+        <input class="form-control mr-sm-2" type="text" name="product_name" placeholder="Enter the product">
+        <input class="form-control mr-sm-2" type="text" name="product_price" placeholder="Enter the price">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="save">submit</button>
     </form>
     <h1>Hello welcome to items page you will see the itms shortlly</h1>
     <form class="form-inline my-4 my-lg-2 p-3" method="post">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="search">Search</button>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="search" name="search">Search</button>
     </form>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -35,12 +41,12 @@ $conn = mysqli_select_db($link, $dbms);
 
 <?php
 
-if (isset($_POST['submit'])) {
-    mysqli_query($link, "INSERT INTO product(product_name, product_price) VALUES($_POST[product], $_POST[price])");
-    echo "insertion done" -t 2;
+if (isset($_POST['save'])) {
+    mysqli_query($link, "INSERT INTO product (product_name, product_price) VALUES('$_POST[product_name]', '$_POST[product_price]')");
+    echo "insertion done";
 }
 
-if (isset($_POST['Search'])) {
+if (isset($_POST['search'])) {
     $res = mysqli_query($link, "SELECT * FROM product");
     echo "<table>";
     echo "<tr >";
