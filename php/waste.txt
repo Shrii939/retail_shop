@@ -1,0 +1,22 @@
+<?php
+if (isset($_POST["display"])) {
+    echo "yes";
+    $query = "SELECT * FROM products";
+    echo "deone";
+    $result = mysqli_query($conn,$query);
+    
+    foreach ($result as $row) {
+        echo '<div class="card m-5" style="width: 18rem;">';
+        // echo 'img class="card-img-top" src="..." alt="Card image cap">';
+        echo '<div class="card-body">';
+        echo '    <h5 class="card-title">' . $row["pname"] . '</h5>';
+        echo '    <p class="card-text">' . $row["pid"] . '</p>';
+        echo '    <p class="card-text">' . $row["pprice"] . '</p>';
+        echo '    <p class="card-text">' . $row["pstock"] . '</p>';
+        echo '    <a href="#" class="btn btn-primary">Go somewhere</a>';
+        echo '</div>';
+        echo '/div>';
+    }
+}
+
+?>
