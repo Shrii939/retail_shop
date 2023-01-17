@@ -42,6 +42,9 @@ if ($conn->connect_error) {
                         <li class="nav-item">
                             <a class="nav-link" href="search.php">display</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="update.php">update</a>
+                        </li>
                     </ul>
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
@@ -88,6 +91,7 @@ if ($conn->connect_error) {
         echo " <table class='table'>";
         echo "<thead>";
         echo "  <tr>";
+        echo "    <th>Product ID</th>";
         echo "    <th>Product</th>";
         echo "    <th>Price</th>";
         echo "    <th>Stock</th>";
@@ -100,13 +104,13 @@ if ($conn->connect_error) {
         // Loop through each row of data
         while ($row = $result->fetch_assoc()) {
             echo "<tr>";
+            echo "<td>" . $row["pid"] . "</td>";
             echo "<td>" . $row["pname"] . "</td>";
             echo "<td>" . $row["pprice"] . "</td>";
             echo "<td>" . $row["pstock"] . "</td>";
             echo "</tr>";
         }
     }
-    $conn->close();
     ?>
   </tbody>
 </table>
@@ -124,6 +128,7 @@ if (isset($_POST["save"])) {
     $pstock = $_POST['pstock'];
     echo "inside";
     $sql = "INSERT INTO product (pname, pprice, pstock) VALUES ('$pname' ,'$pprice', '$pstock')";
+    echo "$sql";
     if (mysqli_query($conn, $sql)) {
         echo "record created successfully";
         header("Location: product.php");
