@@ -56,7 +56,7 @@ if ($conn->connect_error) {
             </div>
         </nav>
     </div>
-    <form action="../php/product.php" method="post" >
+    <form action="../php/product.php" method="post">
         <div class="container mt-5 border p-5">
             <div class="text-center m-4 text-dark">
                 <h1>Product page</h1>
@@ -112,8 +112,8 @@ if ($conn->connect_error) {
         }
     }
     ?>
-  </tbody>
-</table>
+    </tbody>
+    </table>
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
